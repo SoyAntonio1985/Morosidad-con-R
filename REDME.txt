@@ -9,7 +9,7 @@ Este repositorio contiene el resultado de la etapa de limpieza (ETL) del dataset
 - **Nombre:** `data.csv`
 - **Fuente:** Kaggle - [Bank Default Analysis Dataset](https://www.kaggle.com/datasets/luishcaldernb/morosidad)
 - **Observaciones:** 8399 registros
-- **Variables:** 17 variables socioeconómicas, demográficas y financieras relacionadas con morosidad (`mora`).
+- **Variables:** 14 variables socioeconómicas, demográficas y financieras relacionadas con morosidad (`mora`).
 
 ---
 
