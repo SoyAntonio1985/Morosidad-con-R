@@ -1,6 +1,3 @@
-# Morosidad con R
-Proyecto de R para la materia Estadística Descriptiva. Es sobre Morosidad.
-
 # 🧹 Limpieza y Transformación de Datos - Proyecto de Morosidad
 
 Este repositorio contiene el resultado de la etapa de limpieza (ETL) del dataset utilizado en el proyecto final del curso de Estadística Descriptiva - FCEA, primer semestre 2025. El objetivo fue preparar los datos de morosidad financiera para su posterior análisis estadístico, asegurando integridad, consistencia y trazabilidad.
