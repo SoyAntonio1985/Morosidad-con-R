@@ -50,7 +50,7 @@ df_long_exp = df %>%
 # Boxplot comparativo
 ggplot(df_long_exp, aes(x = versión, y = valor, fill = versión)) +
   geom_boxplot(alpha = 0.7) +
-  labs(title = "Comparación de experiencia financiera (exp_sf)", y = "Días de experiencia") +
+  labs(title = "Comparación de experiencia financiera (exp_sf)", y = "Meses de experiencia") +
   theme_minimal()
 
 df_long_linea = df %>%
