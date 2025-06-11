@@ -36,7 +36,7 @@ df$vivienda_clean = dplyr::recode(df$vivienda,
                                   "ALQUILADA" = "No Propia",
                                   .default = "Otra")
 
-zonas_frecuentes = names(which(table(df$zona) > 250))  # elegimos zonas con más de 250 casos
+zonas_frecuentes = names(which(table(df$zona) > 600))  # elegimos zonas con más de 250 casos
 df$zona_clean = ifelse(df$zona %in% zonas_frecuentes,
                        df$zona,
                        "OTRAS")
