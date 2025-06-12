@@ -24,9 +24,9 @@ colSums(is.na(df)) # Validar la imputacion de NA en las columnas clean
 
 # Recodificar categorías: educación, vivienda y zona
 df$nivel_educ_clean = dplyr::recode(df$nivel_educ,
-                                    "SIN EDUCACION" = "Baja o menos",
-                                    "SECUNDARIA" = "Baja o menos",
-                                    "TECNICA" = "Media",
+                                    "SIN EDUCACION" = "Media o menos",
+                                    "SECUNDARIA" = "Media o menos",
+                                    "TECNICA" = "Media o menos",
                                     "UNIVERSITARIA" = "Alta",
                                     .default = "Otra")
 
