@@ -5,7 +5,7 @@ library(tidyr)
 library(dplyr)
 library(patchwork) 
 
-setwd("C:/Users/adema/OneDrive/Escritorio/FCEA/EstadisticaDescriptiva/Practico/ProyectoEstDesc2025/GitHub/data")
+setwd("C:/Users/adema/OneDrive/Escritorio/FCEA/EstadisticaDescriptiva/Practico/ProyectoEstDesc2025")
 df = read_csv("data.csv")
 
 # Vision general de los datos
@@ -18,15 +18,19 @@ df = df[!(is.na(df$exp_sf) & is.na(df$linea_sf) & is.na(df$deuda_sf)), ] # Elimi
 mediana_exp = median(df$exp_sf, na.rm = TRUE) # Calcular la mediana de exp_sf
 df$exp_sf_clean = ifelse(is.na(df$exp_sf), mediana_exp, df$exp_sf) # Imputar los valores NA de exp_sf por su mediana en una nueva columna
 df$linea_sf_clean = ifelse(is.na(df$linea_sf), 0, df$linea_sf) # Imputar los NA linea_sf por 0
-df$deuda_sf_clean = ifelse(is.na(df$deuda_sf), 0, df$deuda_sf) # Imputar los NA deuda_sf por 0
+mediana_deuda = median(df$deuda_sf[df$mora == 1], na.rm = TRUE) # Calcular la mediana de deuda_sf
+df$deuda_sf_clean = ifelse(
+  df$mora == 0, 0,
+  ifelse(is.na(df$deuda_sf), mediana_deuda, df$deuda_sf)
+) # Imputar los NA deuda_sf por 0 cuando mora es 0 y por la mediana cuando mora es 1
 
 colSums(is.na(df)) # Validar la imputacion de NA en las columnas clean
 
 # Recodificar categorías: educación, vivienda y zona
 df$nivel_educ_clean = dplyr::recode(df$nivel_educ,
-                                    "SIN EDUCACION" = "Baja o menos",
-                                    "SECUNDARIA" = "Baja o menos",
-                                    "TECNICA" = "Media",
+                                    "SIN EDUCACION" = "Media o menos",
+                                    "SECUNDARIA" = "Media o menos",
+                                    "TECNICA" = "Media o menos",
                                     "UNIVERSITARIA" = "Alta",
                                     .default = "Otra")
 
@@ -36,7 +40,7 @@ df$vivienda_clean = dplyr::recode(df$vivienda,
                                   "ALQUILADA" = "No Propia",
                                   .default = "Otra")
 
-zonas_frecuentes = names(which(table(df$zona) > 250))  # elegimos zonas con más de 250 casos
+zonas_frecuentes = names(which(table(df$zona) > 600))  # elegimos zonas con más de 250 casos
 df$zona_clean = ifelse(df$zona %in% zonas_frecuentes,
                              df$zona,
                              "OTRAS")
